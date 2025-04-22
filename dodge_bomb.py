@@ -51,8 +51,12 @@ def main():
                 return
         screen.blit(bg_img, [0, 0]) 
 
-        if kk_rct.colliderect(bb_rct):
+        if bo_rct.colliderect(bb_rct):
             print("game over")
+            bo_img = pg.Surface((20, 20))
+            pg.draw.circle(bo_img, (255, 0, 0), (10, 10), 10)
+            bo_img.set_colorkey((0, 0, 0))
+            bo_rct = bo_img.get_rect()
             return
 
 

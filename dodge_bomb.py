@@ -73,6 +73,22 @@ def init_bb_imgs() -> tuple[list[pg.Surface], list[int]]:
     return bb_imgs, bb_accs
 
 
+def get_kk_img(sum_mv: tuple[int, int]) -> pg.Surface:
+    # ろーてかとん
+    rk_img = pg.image.load("fig/3.png")
+    f_rk_img = pg.transform.flip(rk_img, True, False)
+    rk_imgs = {
+        (+5,0): pg.transform.rotozoom(f_rk_img, 0, 0.9),
+        (+5,+5):pg.transform.rotozoom(f_rk_img, 45, 0.9),
+        (0,+5):pg.transform.rotozoom(f_rk_img, 90, 0.9),
+        (-5,+5):pg.transform.rotozoom(rk_img, 45, 0.9),
+        (-5,0):pg.transform.rotozoom(rk_img, 0, 0.9),
+        (-5,-5):pg.transform.rotozoom(rk_img, 90, 0.9),
+        (0-5):pg.transform.rotozoom(f_rk_img, -45, 0.9)
+    }
+    return rk_imgs.get(sum_mv, rk_img)
+
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -103,6 +119,7 @@ def main():
         kk_rct.move_ip(sum_mv)
         if check_bound(kk_rct) != (True, True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
+        kk_img = get_kk_img(tuple(sum_mv))
         screen.blit(kk_img, kk_rct)
 
         # 爆弾移動

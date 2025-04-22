@@ -1,8 +1,7 @@
 import os
+import random
 import sys
 import pygame as pg
-import time
-import random
 
 
 WIDTH, HEIGHT = 1100, 650
@@ -83,8 +82,9 @@ def get_kk_img(sum_mv: tuple[int, int]) -> pg.Surface:
         (0,+5):pg.transform.rotozoom(f_rk_img, -90, 0.9),
         (-5,+5):pg.transform.rotozoom(rk_img, 45, 0.9),
         (-5,0):pg.transform.rotozoom(rk_img, 0, 0.9),
-        (-5,-5):pg.transform.rotozoom(rk_img, -90, 0.9),
-        (0-5):pg.transform.rotozoom(f_rk_img, 45, 0.9)
+        (-5,-5):pg.transform.rotozoom(rk_img, -45, 0.9),
+        (0,-5):pg.transform.rotozoom(rk_img, -90, 0.9),
+        (+5,-5):pg.transform.rotozoom(f_rk_img, 45, 0.9)
     }
     return rk_imgs.get(sum_mv, rk_img)
 

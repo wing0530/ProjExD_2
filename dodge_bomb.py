@@ -60,7 +60,7 @@ def gameover(screen):
 def init_bb_imgs() -> tuple[list[pg.Surface], list[int]]:
     """
     引数：なし
-    戻り値：球イラストのリストと加速度のリスト
+    戻り値：弾イラストのリストと加速度のリスト
     """
     bb_accs = [a for a in range(1, 11)]  # 加速率を設定 (1〜10)
     bb_imgs = []
@@ -94,7 +94,6 @@ def main():
             if event.type == pg.QUIT:
                 return
         screen.blit(bg_img, [0, 0])
-
         key_lst = pg.key.get_pressed()
         sum_mv = [0, 0]
         for key, mv in DELTA.items():
@@ -119,7 +118,6 @@ def main():
             vx *= -1
         if not tate:
             vy *= -1
-
         screen.blit(bb_imgs[min(tmr // 500, 9)], bb_rct)
 
         pg.display.update()
